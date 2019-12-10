@@ -78,9 +78,17 @@ public class BrandService {
 
 
         // 在新增中间表
-        // 在新增中间表
         cids.forEach(cid -> {
             this.brandMapper.insertBrandAndCategory(cid, brand.getId());
         });
         }
+    /**
+     * 新增商品
+     *
+     * @param cid
+     */
+    public List<Brand> queryBrandsByCid(Long cid) {
+
+        return this.brandMapper.selectBrandByCid(cid);
+    }
     }

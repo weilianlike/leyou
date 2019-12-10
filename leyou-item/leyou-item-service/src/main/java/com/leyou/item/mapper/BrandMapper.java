@@ -3,8 +3,12 @@ package com.leyou.item.mapper;
 import com.leyou.item.pojo.Brand;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.common.Mapper;
+
+import java.util.List;
+
 /**
  * 〈一句话功能简述〉<br>
  * 〈品牌管理Mapper〉
@@ -24,4 +28,11 @@ public interface BrandMapper extends Mapper<Brand> {
      */
     @Insert("INSERT INTO tb_category_brand(category_id, brand_id) VALUES (#{cid},#{bid})")
     int insertBrandAndCategory(@Param("cid") Long cid, @Param("bid") Long bid);
+    /**
+     * 新增商品
+     * @param cid 商品分类id
+     * @return
+     */
+    @Select("SELECT b.* from tb_brand b INNER JOIN tb_category_brand cb on b.id=cb.brand_id where cb.category_id=#{cid}")
+    List<Brand> selectBrandByCid(Long cid);
 }

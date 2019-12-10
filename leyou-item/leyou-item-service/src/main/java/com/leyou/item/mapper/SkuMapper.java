@@ -1,8 +1,8 @@
 /**
  * Copyright (C), 2015-2019, XXX有限公司
- * FileName: CategoryMapper
+ * FileName: SkuMapper
  * Author:   Pony
- * Date:     2019/11/26 20:09
+ * Date:     2019/12/10 12:01
  * Description:
  * History:
  * <author>          <time>          <version>          <desc>
@@ -10,18 +10,17 @@
  */
 package com.leyou.item.mapper;
 
-import com.leyou.item.pojo.Category;
-import tk.mybatis.mapper.additional.idlist.SelectByIdListMapper;
+import com.leyou.item.pojo.Sku;
 import tk.mybatis.mapper.common.Mapper;
 
 /**
  * 〈一句话功能简述〉<br> 
- * 〈分类管理Mapper〉
+ * 〈〉
  *
  * @author Pony
- * @create 2019/11/26
+ * @create 2019/12/10
  * @since 1.0.0
  */
-public interface CategoryMapper extends Mapper<Category>, SelectByIdListMapper<Category, Long> {
+public interface SkuMapper extends Mapper<Sku> {
 
 }

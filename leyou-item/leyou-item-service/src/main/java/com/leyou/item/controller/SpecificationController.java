@@ -11,6 +11,7 @@
 package com.leyou.item.controller;
 
 import com.leyou.item.pojo.SpecGroup;
+import com.leyou.item.pojo.SpecParam;
 import com.leyou.item.service.SpecificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -56,5 +58,29 @@ public class SpecificationController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(groups);
+    }
+    /**
+     * 根据条件查询规格参数
+     * @param gid
+     * @return
+     * - 请求方式：GET
+     * - 请求路径：/spec/params
+     * - 请求参数：gid，分组id
+     * - 返回结果：该分组下的规格参数集合List<SpecParam>
+     */
+    @GetMapping("params")
+    public ResponseEntity<List<SpecParam>> queryParams(
+            @RequestParam(value = "gid", required = false)Long gid,
+            @RequestParam(value = "cid", required = false)Long cid,
+            @RequestParam(value = "generic", required = false)Boolean generic,
+            @RequestParam(value = "searching", required = false)Boolean searching
+    ){
+
+        List<SpecParam> params = this.specificationService.queryParams(gid, cid, generic, searching);
+
+        if (CollectionUtils.isEmpty(params)){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(params);
     }
 }
