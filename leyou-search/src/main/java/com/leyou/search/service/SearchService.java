@@ -192,5 +192,17 @@ public class SearchService {
         //getContent当前页的记录数
         return new PageResult<>(goodsPage.getTotalElements(), goodsPage.getTotalPages(), goodsPage.getContent());
     }
+
+    public void save(Long id) throws IOException {
+        Spu spu=this.goodsClient.querySpuById(id);
+        Goods goods=this.buildGoods(spu);
+        this.goodsRepository.save(goods);
+
+    }
+
+    public void delect(Long id) {
+    this.goodsRepository.deleteById(id);
+
+    }
 }
 
